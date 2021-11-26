@@ -316,7 +316,7 @@ workflows:
 - develop your orb, batteries included with a preconfigured CircleCI pipeline
     - automatic releases on semantic commits
     - snapshots on feature branches to test your orbs before publishing them
-
+- After approval with someone from `@trustedshops-public/circleci-orbs` the orb will be published
 ---
 
 # Orb source structure
@@ -376,6 +376,18 @@ Each of the directories is optional.
 
 ---
 
+# Further resources
+
+## CircleCI
+
+- [circleci.com/orbs](https:///circleci.com/orbs/)
+- [circleci.com/docs/2.0/orb-intro](https://circleci.com/docs/2.0/orb-intro/)
+
+## Publishing Orbs at TS
+- [trustedshops/tps-operations-guidelines/CI_CD/CircleCI/ORBS.md](https://github.com/trustedshops/tps-operations-guidelines/blob/main/CI_CD/CircleCI/ORBS.md)
+
+---
+
 # End
 
-![bg right width:400px](./images/meme-world-without-ci-cd.jpg)
+![bg right width:500px](./images/meme-world-without-ci-cd.jpg)
