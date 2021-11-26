@@ -105,6 +105,7 @@ jobs:
             name: Apply
             command: |
               cd terraform
+              # same story again, just different var-file
               terraform apply -var-file=vars/test.tfvars -auto-approve=yes
     deploy_prod:
       executor:
@@ -121,15 +122,16 @@ jobs:
             name: Apply
             command: |
               cd terraform
+              # same story again, just different var-file
               terraform apply -var-file=vars/prod.tfvars -auto-approve=yes
 ```
 
 ---
 
 # Whats wrong?
-
+<!-- REMINDER: Talk about problems beforehand -->
 - duplicated executors and also versions!
-- checkout, install dependencies is duplicated
+- duplicated checkout, install dependencies
 - duplicated deployment jobs
 - hard to read and update
 
@@ -158,12 +160,12 @@ jobs:
 ---
 
 # Reusable pipeline | Overview
-
+<!-- TODO Fix arrows for executor/cmd -->
 ![height:600px](./images/circleci-stage-2.jpg)
 
 ---
 
-# Reusable pipeline | Code
+# Reusable pipeline | Code 1/2
 
 ```yaml
 version: 2.1
@@ -186,7 +188,13 @@ commands:
           command: npm install
       - save_cache:
           key: node-modules-{{ checksum package-lock.json }}
+```
 
+---
+
+# Reusable pipeline | Code 2/2
+
+```yaml
 jobs:
   build:
     executor: node
@@ -228,6 +236,8 @@ jobs:
                 terraform apply --var-file vars/<<parameters.env>>.tfvars -auto-approve=yes
 # ...
 ```
+
+<!-- TODO Add workflows as slide -->
 
 ---
 
@@ -272,13 +282,13 @@ workflows:
         name: test
     - node/run:
         name: build
-        npm-run: test
+        npm-run: build
         requires:
           - test
     - terraform-utils/terraform-apply:
-        name: deploy_test
+        name: deploy_dev
         <<: *terraform_defaults
-        var-file: vars/test.tfvars
+        var-file: vars/dev.tfvars
         requires:
           - build
         # filters, contexts ..
@@ -368,7 +378,7 @@ Each of the directories is optional.
 - use official orbs functionality as base when possible (e. g. aws cli)
 - create commands for building blocks
 - a job should also be executable using commands from the orb
-- pass parameters through with the same defaults.gitignore
+- pass parameters through with the same defaults
 - provide at least one example per job and one to use composite commands
 - do one thing and do it good
 - make the orb flexible with parameters but provide sensitive defaults
