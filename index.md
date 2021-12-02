@@ -160,7 +160,6 @@ jobs:
 ---
 
 # Reusable pipeline | Overview
-<!-- TODO Fix arrows for executor/cmd -->
 ![height:600px](./images/circleci-stage-2.jpg)
 
 ---
@@ -237,7 +236,20 @@ jobs:
 # ...
 ```
 
-<!-- TODO Add workflows as slide -->
+---
+
+# Reusable pipeline | Call parameterized workflow in job
+
+```yaml
+workflows:
+  continuous:
+    jobs:
+      # ...
+      - deploy:
+          name: deploy-test
+          env: test
+      # ...
+```
 
 ---
 
@@ -278,34 +290,35 @@ orbs:
 
 workflows:
   continuous:
-    - node/test:
-        name: test
-    - node/run:
-        name: build
-        npm-run: build
-        requires:
-          - test
-    - terraform-utils/terraform-apply:
-        name: deploy_dev
-        <<: *terraform_defaults
-        var-file: vars/dev.tfvars
-        requires:
-          - build
-        # filters, contexts ..
-    - terraform-utils/terraform-apply:
-        name: deploy_test
-        <<: *terraform_defaults
-        var-file: vars/test.tfvars
-        requires:
-          - build
-        # filters, contexts ..
-    - terraform-utils/terraform-apply:
-        name: deploy_prod
-        <<: *terraform_defaults
-        var-file: vars/prod.tfvars
-        requires:
-          - build
-        # filters, contexts ..
+    jobs:
+      - node/test:
+          name: test
+      - node/run:
+          name: build
+          npm-run: build
+          requires:
+            - test
+      - terraform-utils/terraform-apply:
+          name: deploy_dev
+          <<: *terraform_defaults
+          var-file: vars/dev.tfvars
+          requires:
+            - build
+          # filters, contexts ..
+      - terraform-utils/terraform-apply:
+          name: deploy_test
+          <<: *terraform_defaults
+          var-file: vars/test.tfvars
+          requires:
+            - build
+          # filters, contexts ..
+      - terraform-utils/terraform-apply:
+          name: deploy_prod
+          <<: *terraform_defaults
+          var-file: vars/prod.tfvars
+          requires:
+            - build
+          # filters, contexts ..
 ```
 
 ---
