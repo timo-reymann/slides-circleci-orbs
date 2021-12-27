@@ -369,7 +369,6 @@ Each of the directories is optional.
 # Orbs - The ugly
 
 - once published there is no way back - the orb can only be deleted in special cases by support
-- 3 private orbs per org on our plan (seriously?!)
 - only admin can create and update orbs (TPS DevOps team built a workaround for that)
 
 ---
