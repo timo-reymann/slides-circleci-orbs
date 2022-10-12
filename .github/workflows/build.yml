@@ -11,6 +11,7 @@ jobs:
 
       - name: Install and Build 🔧
         run: |
+          cp -r images/ build/images
           npx @marp-team/marp-cli index.md -o build/index.html
 
       - name: Deploy 🚀
