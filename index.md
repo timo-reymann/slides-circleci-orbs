@@ -90,23 +90,7 @@ jobs:
           command: |
             cd terraform
             terraform apply -var-file=vars/dev.tfvars -auto-approve=yes
-    deploy_test:
-      executor:
-        docker:
-          - image: terraform:1.0
-      steps:
-        - checkout
-        - run:
-            name: Initialize terraform
-            command: |
-              cd terraform
-              terraform init
-        - run:
-            name: Apply
-            command: |
-              cd terraform
-              # same story again, just different var-file
-              terraform apply -var-file=vars/test.tfvars -auto-approve=yes
+# ...
     deploy_prod:
       executor:
         docker:
