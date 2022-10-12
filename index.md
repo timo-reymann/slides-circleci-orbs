@@ -371,7 +371,7 @@ Each of the directories is optional.
 - provide at least one example per job and one to use composite commands
 - do one thing and do it good
 - make the orb flexible with parameters but provide sensitive defaults
-- keep it generic and free from "TrustedShops specials"
+- keep it generic and free from "company specials"
 
 ---
 
