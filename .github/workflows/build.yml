@@ -13,6 +13,7 @@ jobs:
         run: |
           npx @marp-team/marp-cli index.md -o build/index.html
           cp -r images/ build/images
+          echo "circleci-orbs.slides.timo-reymann.de" > build/CNAME
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
