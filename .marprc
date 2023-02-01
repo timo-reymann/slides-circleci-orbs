@@ -1,6 +1,6 @@
 ---
 allowLocalFiles: true
-pdf: true
+pdf: false
 html: true
 theme: theme.css
 
