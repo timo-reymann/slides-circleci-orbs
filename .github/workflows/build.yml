@@ -1,0 +1,13 @@
+name: Build and Deploy
+on: [push]
+permissions:
+  contents: write
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: marp-gh-page
+        uses: timo-reymann/marp-gh-page-action@v1
+        with:
+          domain: circleci-orbs.slides.timo-reymann.de
+          assets_path: images
