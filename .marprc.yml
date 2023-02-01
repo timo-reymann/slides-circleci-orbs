@@ -2,3 +2,5 @@
 allowLocalFiles: true
 pdf: true
 html: true
+theme: theme.css
+
