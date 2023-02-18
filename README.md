@@ -1,7 +1,11 @@
 slides-circleci-orbs
 ===
 
-What are orbs? Why do we use them? How do I create new ones? 
+<p align="center">
+	<img width="300" src="https://raw.githubusercontent.com/timo-reymann/timo-reymann/master/.images/reference/icon-present.png">
+    <br />
+    What are orbs? Why do we use them? How do I create new ones? 
+</p>
 
 ## Requirements
 
